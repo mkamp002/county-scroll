@@ -51,6 +51,9 @@ export default {
         verified: "hsl(var(--verified))",
         invalid: "hsl(var(--invalid))",
         unknown: "hsl(var(--unknown))",
+        "dark-bg": "hsl(var(--dark-bg))",
+        "dark-section": "hsl(var(--dark-section))",
+        "dark-foreground": "hsl(var(--dark-foreground))",
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -61,7 +61,7 @@ export function AiDrawer({ onClose }: AiDrawerProps) {
       aria-labelledby="ai-drawer-title"
     >
       <div
-        className="fixed right-0 top-0 h-full w-full max-w-xl bg-section border-l border-border overflow-y-auto"
+        className="fixed right-0 top-0 h-full w-full max-w-xl bg-background border-l border-border overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">
@@ -94,7 +94,6 @@ export function AiDrawer({ onClose }: AiDrawerProps) {
                     variant="outline"
                     size="sm"
                     onClick={() => handlePreset(preset.prompt)}
-                    className="border-primary/30 hover:border-primary hover:bg-primary/10"
                   >
                     {preset.label}
                   </Button>
@@ -114,7 +113,7 @@ export function AiDrawer({ onClose }: AiDrawerProps) {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you need..."
-                className="min-h-[120px] bg-card/50 border-border"
+                className="min-h-[120px] bg-background border-border"
               />
             </div>
 

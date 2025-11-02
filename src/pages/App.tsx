@@ -29,7 +29,7 @@ export default function App() {
   }));
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-section">
       <AppHeader onAiClick={() => setShowAi(true)} onSearchChange={setSearchQuery} />
 
       <div className="container mx-auto px-4 py-6 space-y-4">
@@ -57,7 +57,7 @@ export default function App() {
 
         {/* Tabs */}
         <Tabs defaultValue="feed" className="w-full">
-          <TabsList className="w-full justify-start bg-card/50">
+          <TabsList className="w-full justify-start bg-background border border-border">
             <TabsTrigger value="feed">Feed</TabsTrigger>
             <TabsTrigger value="cases">Cases</TabsTrigger>
             <TabsTrigger value="hot">Hot</TabsTrigger>

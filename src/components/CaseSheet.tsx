@@ -36,11 +36,11 @@ export function CaseSheet({ caseId, onClose }: CaseSheetProps) {
       aria-labelledby="case-sheet-title"
     >
       <div
-        className="fixed right-0 top-0 h-full w-full max-w-2xl bg-section border-l border-border overflow-y-auto"
+        className="fixed right-0 top-0 h-full w-full max-w-2xl bg-background border-l border-border overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-section/95 backdrop-blur-sm border-b border-border p-6">
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
@@ -52,8 +52,7 @@ export function CaseSheet({ caseId, onClose }: CaseSheetProps) {
               </div>
               <div
                 className={cn(
-                  "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/20 border border-primary/30 text-primary font-medium",
-                  caseData.lead_score >= 7 && "hot-glow"
+                  "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-primary font-medium"
                 )}
               >
                 <span className="text-sm">Lead Score</span>

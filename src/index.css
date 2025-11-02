@@ -8,49 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* PROJECT VON Dark Theme */
-    --background: 222 50% 3%;           /* #070A0F - page bg */
-    --section: 223 45% 5%;              /* #0B0F14 - section bg */
-    --foreground: 225 22% 97%;          /* #F5F6FA - primary text */
+    /* Goliath-inspired theme - Navy/Teal */
+    --background: 0 0% 100%;            /* White */
+    --section: 210 40% 98%;             /* Light gray */
+    --foreground: 210 24% 16%;          /* Dark navy text */
     
-    --card: 223 38% 8%;                 /* #111521 - card bg */
-    --card-foreground: 225 22% 97%;
+    --card: 0 0% 100%;                  /* White cards */
+    --card-foreground: 210 24% 16%;
     
-    --popover: 223 38% 8%;
-    --popover-foreground: 225 22% 97%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 24% 16%;
     
-    --primary: 18 95% 53%;              /* #F97316 - orange accent */
-    --primary-foreground: 225 22% 97%;
+    --primary: 184 95% 39%;             /* Teal accent */
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 223 38% 8%;
-    --secondary-foreground: 225 22% 97%;
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 210 24% 16%;
     
-    --muted: 218 15% 63%;               /* #9AA4B2 - muted text */
-    --muted-foreground: 218 15% 63%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 210 16% 46%;
     
-    --accent: 18 95% 53%;
-    --accent-foreground: 225 22% 97%;
+    --accent: 184 95% 39%;
+    --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 225 22% 97%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 223 28% 14%;              /* #1B2330 - borders */
-    --input: 223 28% 14%;
-    --ring: 18 95% 53%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 184 95% 39%;
     
     --radius: 1rem;
     
-    /* Glass effect variables */
-    --glass-bg: 0 0% 100% / 0.05;
-    --glass-border: 0 0% 100% / 0.1;
+    /* Dark sections */
+    --dark-bg: 210 38% 15%;             /* #1C2B3A - dark navy */
+    --dark-section: 210 45% 11%;        /* #0B1A2A - darker navy */
+    --dark-foreground: 210 20% 98%;
     
-    /* Verified status colors */
-    --verified: 142 76% 36%;            /* Green */
-    --invalid: 0 84% 60%;               /* Red */
-    --unknown: 218 15% 50%;             /* Gray */
+    /* Gradients */
+    --gradient-dark: linear-gradient(135deg, hsl(210, 45%, 11%), hsl(190, 60%, 25%));
+    --gradient-light: linear-gradient(135deg, hsl(210, 38%, 15%), hsl(184, 95%, 39%));
     
-    /* Hot lead glow */
-    --hot-glow: 18 95% 53% / 0.5;
+    /* Status colors */
+    --verified: 142 76% 36%;
+    --invalid: 0 84% 60%;
+    --unknown: 210 16% 46%;
   }
 }
 
@@ -71,21 +73,20 @@ All colors MUST be HSL.
 
 @layer components {
   .glass-card {
-    @apply rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    @apply rounded-2xl bg-card border border-border;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
   
-  .hot-glow {
-    box-shadow: 0 0 24px hsl(var(--hot-glow));
+  .dark-glass-card {
+    @apply rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+  
+  .gradient-dark {
+    background: var(--gradient-dark);
   }
-
-  body {
-    @apply bg-background text-foreground;
+  
+  .gradient-light {
+    background: var(--gradient-light);
   }
 }

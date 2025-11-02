@@ -30,7 +30,7 @@ export function EventCard({
   return (
     <button
       onClick={onClick}
-      className="glass-card w-full p-4 text-left transition-all duration-200 hover:border-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+      className="glass-card w-full p-4 text-left transition-all duration-200 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
     >
       <div className="flex items-start justify-between gap-3 mb-2">
         <h3 className="font-heading font-semibold text-foreground">{title}</h3>

@@ -8,11 +8,11 @@ interface BadgeProps {
 
 export function Badge({ variant = "verified", children, className }: BadgeProps) {
   const variants = {
-    verified: "bg-verified/20 text-verified border-verified/30",
-    invalid: "bg-invalid/20 text-invalid border-invalid/30",
-    unknown: "bg-unknown/20 text-unknown border-unknown/30",
-    hot: "bg-primary/20 text-primary border-primary/30 hot-glow",
-    clerk: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    verified: "bg-verified/10 text-verified border-verified/30",
+    invalid: "bg-invalid/10 text-invalid border-invalid/30",
+    unknown: "bg-unknown/10 text-unknown border-unknown/30",
+    hot: "bg-primary/10 text-primary border-primary/30",
+    clerk: "bg-blue-500/10 text-blue-600 border-blue-500/30",
   };
 
   return (

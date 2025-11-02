@@ -58,8 +58,8 @@ export function ChipScroller({ chips, selected, onSelect, ariaLabel }: ChipScrol
             "flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
             "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
             selected === chip.id
-              ? "bg-primary text-primary-foreground"
-              : "bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground border border-border"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "bg-background text-muted-foreground hover:bg-card hover:text-foreground border border-border"
           )}
         >
           <div className="flex flex-col items-start">
