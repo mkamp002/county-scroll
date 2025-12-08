@@ -10,10 +10,7 @@ export default function Landing() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                V
-              </div>
-              <span className="font-heading text-xl font-bold text-foreground">PROJECT VON</span>
+              <span className="font-heading text-xl font-bold text-foreground">VONKAM</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -168,14 +165,14 @@ export default function Landing() {
               Stories from the field
             </h2>
             <p className="text-xl text-muted-foreground">
-              Agents and investors who use PROJECT VON close 3x more deals in half the time.
+              Agents and investors who use VONKAM close 3x more deals in half the time.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="glass-card p-8">
               <p className="text-foreground mb-6 italic">
-                "Amazing leads to solid prospects. The hit rate has blown away my traditional cold calling! Thank you PROJECT VON!"
+                "Amazing leads to solid prospects. The hit rate has blown away my traditional cold calling! Thank you VONKAM!"
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
@@ -205,7 +202,7 @@ export default function Landing() {
 
             <div className="glass-card p-8">
               <p className="text-foreground mb-6 italic">
-                "I've tried other lead providers before, but PROJECT VON is different. The homeowners actually expect my call, and they're ready to have a real conversation about selling."
+                "I've tried other lead providers before, but VONKAM is different. The homeowners actually expect my call, and they're ready to have a real conversation about selling."
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
@@ -230,7 +227,7 @@ export default function Landing() {
               Straightforward pricing, 24/7 support, cancel anytime
             </p>
             <p className="text-lg text-white/70">
-              Join 11,000+ investors and agents who rely on PROJECT VON to connect with homeowners who are ready to sell.
+              Join 11,000+ investors and agents who rely on VONKAM to connect with homeowners who are ready to sell.
             </p>
           </div>
 
