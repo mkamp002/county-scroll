@@ -13,12 +13,7 @@ export function AppHeader({ onAiClick, onSearchChange }: AppHeaderProps) {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                V
-              </div>
-              <span className="font-heading text-lg font-bold text-foreground">PROJECT VON</span>
-            </div>
+            <span className="font-heading text-lg font-bold text-foreground">VONKAM</span>
           </div>
 
           <div className="flex-1 max-w-md">
