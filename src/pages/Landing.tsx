@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Calendar, TrendingUp, Shield, Zap, MessageSquare } from "lucide-react";
+import { ArrowRight, Users, Calendar, TrendingUp, Shield, Zap, MessageSquare, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Landing() {
@@ -39,11 +39,11 @@ export default function Landing() {
             </div>
             
             <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-              Turn foreclosure leads into closed deals
+              Helping homeowners understand their status
             </h1>
             
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Access verified contact data, track cases in real-time, and close 3x more deals with AI-powered intelligence.
+              We connect homeowners with real-time case updates, verified resources, and expert guidance to navigate foreclosure with clarity and confidence.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -64,7 +64,17 @@ export default function Landing() {
       {/* Features Grid */}
       <section id="features" className="py-20 bg-section">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6">
+                <Home className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-heading text-2xl font-bold mb-4 text-foreground">Know Your Status</h3>
+              <p className="text-muted-foreground">
+                Homeowners get real-time updates on their case status, docket filings, and deadlines—so they're never left in the dark.
+              </p>
+            </div>
+
             <div className="text-center">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6">
                 <Zap className="h-8 w-8 text-primary" />
