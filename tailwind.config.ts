@@ -56,8 +56,8 @@ export default {
         "dark-foreground": "hsl(var(--dark-foreground))",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

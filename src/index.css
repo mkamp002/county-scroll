@@ -2,57 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Goliath-inspired theme - Navy/Teal */
-    --background: 0 0% 100%;            /* White */
-    --section: 210 40% 98%;             /* Light gray */
-    --foreground: 210 24% 16%;          /* Dark navy text */
+    /* VONKAM Dark Premium Theme */
+    --background: 0 0% 4%;              /* Near black */
+    --section: 0 0% 7%;                 /* Charcoal */
+    --foreground: 0 0% 95%;             /* Off-white */
     
-    --card: 0 0% 100%;                  /* White cards */
-    --card-foreground: 210 24% 16%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 24% 16%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
     
-    --primary: 184 95% 39%;             /* Teal accent */
-    --primary-foreground: 0 0% 100%;
+    --primary: 200 100% 55%;            /* Electric blue */
+    --primary-foreground: 0 0% 2%;
     
-    --secondary: 210 17% 95%;
-    --secondary-foreground: 210 24% 16%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
     
-    --muted: 210 17% 95%;
-    --muted-foreground: 210 16% 46%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
     
-    --accent: 184 95% 39%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 200 100% 55%;
+    --accent-foreground: 0 0% 2%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 184 95% 39%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 200 100% 55%;
     
-    --radius: 1rem;
-    
-    /* Dark sections */
-    --dark-bg: 210 38% 15%;             /* #1C2B3A - dark navy */
-    --dark-section: 210 45% 11%;        /* #0B1A2A - darker navy */
-    --dark-foreground: 210 20% 98%;
-    
-    /* Gradients */
-    --gradient-dark: linear-gradient(135deg, hsl(210, 45%, 11%), hsl(190, 60%, 25%));
-    --gradient-light: linear-gradient(135deg, hsl(210, 38%, 15%), hsl(184, 95%, 39%));
-    
-    /* Status colors */
-    --verified: 142 76% 36%;
-    --invalid: 0 84% 60%;
-    --unknown: 210 16% 46%;
+    --radius: 0.5rem;
   }
 }
 
@@ -62,31 +44,25 @@ All colors MUST be HSL.
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
-  .glass-card {
-    @apply rounded-2xl bg-card border border-border;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
-  
-  .dark-glass-card {
-    @apply rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  }
-  
-  .gradient-dark {
-    background: var(--gradient-dark);
-  }
-  
-  .gradient-light {
-    background: var(--gradient-light);
+
+  .glow-line {
+    background: linear-gradient(90deg, transparent, hsl(200, 100%, 55%, 0.15), transparent);
   }
 }
