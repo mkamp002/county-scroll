@@ -62,7 +62,7 @@ export function LandingHero() {
     <section className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
       {/* Radial glow */}
       <div className="absolute inset-0 radial-glow pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-primary/[0.04] blur-[200px] pointer-events-none" />
 
       {/* Particles */}
       <Particles count={24} />
