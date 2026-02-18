@@ -35,9 +35,11 @@ export function LandingCTA() {
             <span className="text-muted-foreground">it's fragile.</span>
           </motion.h2>
           <motion.div variants={child}>
-            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button mb-5">
-              Schedule Consultation
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button mb-5" asChild>
+              <a href="https://calendly.com/michelkampreisser1/30min" target="_blank" rel="noopener noreferrer">
+                Schedule Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
           </motion.div>
           <motion.p variants={child} className="text-xs text-muted-foreground/50 tracking-wide">Private engagements only.</motion.p>
