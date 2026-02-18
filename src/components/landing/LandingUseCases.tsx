@@ -66,7 +66,7 @@ export function LandingUseCases() {
                 onClick={() => setExpanded(expanded === i ? null : i)}
                 className="w-full flex items-center justify-between py-6 text-left group"
               >
-                <span className="text-base font-medium tracking-tight group-hover:text-primary transition-colors">
+                <span className="text-base font-medium tracking-tight group-hover:text-primary transition-colors duration-300">
                   {uc.title}
                 </span>
                 <ChevronRight

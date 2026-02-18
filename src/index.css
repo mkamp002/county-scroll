@@ -81,11 +81,36 @@
   }
 
   .glow-card {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .glow-card:hover {
     border-color: hsl(200, 100%, 55%, 0.2);
     box-shadow: 0 0 40px hsl(200, 100%, 55%, 0.05), inset 0 1px 0 hsl(200, 100%, 55%, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .lift-hover {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .lift-hover:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Terminal typing cursor */
+  .terminal-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: hsl(200, 100%, 55%);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 }
