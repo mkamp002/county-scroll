@@ -14,7 +14,7 @@ const child = {
 
 export function LandingCTA() {
   return (
-    <section className="py-36 border-t border-border">
+    <section className="py-44">
       <div className="max-w-[1000px] mx-auto px-6 text-center">
         <motion.div
           initial="hidden"
@@ -24,7 +24,7 @@ export function LandingCTA() {
         >
           <motion.h2
             variants={child}
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-8 max-w-2xl mx-auto leading-[1.1]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-10 max-w-2xl mx-auto leading-[1.08]"
           >
             If your business depends on manual work,
             <br />

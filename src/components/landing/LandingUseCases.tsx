@@ -39,17 +39,17 @@ export function LandingUseCases() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <section id="cases" className="py-36">
+    <section id="cases" className="py-44 relative">
       <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-4">Applications</motion.p>
-          <motion.h2 variants={child} className="text-4xl sm:text-5xl font-semibold tracking-tight">Use Cases</motion.h2>
+          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-5">Applications</motion.p>
+          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">Use Cases</motion.h2>
         </motion.div>
 
         <motion.div
@@ -92,6 +92,8 @@ export function LandingUseCases() {
           ))}
         </motion.div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px glow-line" />
     </section>
   );
 }

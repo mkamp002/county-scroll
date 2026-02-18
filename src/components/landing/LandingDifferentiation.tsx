@@ -12,7 +12,7 @@ const child = {
 
 export function LandingDifferentiation() {
   return (
-    <section className="py-36 relative">
+    <section className="py-44 relative">
       <div className="max-w-[1000px] mx-auto px-6 text-center">
         <motion.div
           initial="hidden"
@@ -22,13 +22,13 @@ export function LandingDifferentiation() {
         >
           <motion.h2
             variants={child}
-            className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight mb-8"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-10"
           >
             We Don't Sell Tools.
             <br />
             <span className="text-muted-foreground">We Build Systems.</span>
           </motion.h2>
-          <motion.p variants={child} className="text-[17px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={child} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             VONKAM does not resell software. We engineer custom automation architecture tailored to the operator's business model.
           </motion.p>
         </motion.div>
