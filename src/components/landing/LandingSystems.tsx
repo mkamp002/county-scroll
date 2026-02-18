@@ -1,68 +1,68 @@
 import { Bot, Workflow, Database } from "lucide-react";
 import { motion } from "framer-motion";
 
-const fade = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
-  }),
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const child = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
 
 const systems = [
   {
     icon: Bot,
     title: "AI Agents",
-    description:
-      "Custom-built AI assistants that automate research, qualification, monitoring, and internal decision flows.",
+    description: "Custom-built AI assistants that automate research, qualification, monitoring, and internal decision flows.",
   },
   {
     icon: Workflow,
     title: "Workflow Automation",
-    description:
-      "Integrated API systems connecting CRMs, databases, communications, and operational tools.",
+    description: "Integrated API systems connecting CRMs, databases, communications, and operational tools.",
   },
   {
     icon: Database,
     title: "Data Infrastructure",
-    description:
-      "Structured event pipelines, dashboards, and intelligence layers built for real-time visibility.",
+    description: "Structured event pipelines, dashboards, and intelligence layers built for real-time visibility.",
   },
 ];
 
 export function LandingSystems() {
   return (
-    <section id="systems" className="py-32 bg-section">
-      <div className="container mx-auto px-6">
+    <section id="systems" className="py-36 bg-section">
+      <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="text-center mb-20"
         >
-          <p className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-4">Architecture</p>
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">System Blocks</h2>
+          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-4">Architecture</motion.p>
+          <motion.h2 variants={child} className="text-4xl sm:text-5xl font-semibold tracking-tight">System Blocks</motion.h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {systems.map((item, i) => (
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={stagger}
+          className="grid md:grid-cols-3 gap-6"
+        >
+          {systems.map((item) => (
             <motion.div
               key={item.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fade}
-              className="group p-8 rounded-lg border border-border bg-card glow-card cursor-default"
+              variants={child}
+              className="group p-8 rounded-lg border border-border bg-card glow-card cursor-default text-center"
             >
-              <item.icon className="h-5 w-5 text-primary mb-8" strokeWidth={1.5} />
+              <item.icon className="h-5 w-5 text-primary mb-8 mx-auto" strokeWidth={1.5} />
               <h3 className="text-lg font-semibold mb-3 tracking-tight">{item.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,24 +1,36 @@
 import { motion } from "framer-motion";
 
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const child = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
+};
+
 export function LandingStatement() {
   return (
-    <section className="py-32 sm:py-40 relative">
-      <div className="container mx-auto px-6">
+    <section className="py-36 sm:py-44 relative">
+      <div className="max-w-[1000px] mx-auto px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight mb-8">
+          <motion.h2
+            variants={child}
+            className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight mb-8"
+          >
             Most businesses operate manually.
             <br />
             <span className="text-primary">We engineer leverage.</span>
-          </h2>
-          <p className="text-[17px] text-muted-foreground max-w-2xl leading-relaxed">
+          </motion.h2>
+          <motion.p variants={child} className="text-[17px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We build backend systems that eliminate repetitive work, centralize intelligence, and give operators full control over their workflows.
-          </p>
+          </motion.p>
         </motion.div>
       </div>
 

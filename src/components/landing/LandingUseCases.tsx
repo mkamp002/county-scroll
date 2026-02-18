@@ -2,13 +2,14 @@ import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const fade = {
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const child = {
   hidden: { opacity: 0, y: 16 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
-  }),
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
 
 const cases = [
@@ -38,28 +39,30 @@ export function LandingUseCases() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <section id="cases" className="py-32">
-      <div className="container mx-auto px-6">
+    <section id="cases" className="py-36">
+      <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="text-center mb-20"
         >
-          <p className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-4">Applications</p>
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">Use Cases</h2>
+          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-4">Applications</motion.p>
+          <motion.h2 variants={child} className="text-4xl sm:text-5xl font-semibold tracking-tight">Use Cases</motion.h2>
         </motion.div>
 
-        <div className="max-w-2xl space-y-0">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={stagger}
+          className="max-w-2xl mx-auto space-y-0"
+        >
           {cases.map((uc, i) => (
             <motion.div
               key={i}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fade}
+              variants={child}
               className="border-b border-border"
             >
               <button
@@ -70,7 +73,7 @@ export function LandingUseCases() {
                   {uc.title}
                 </span>
                 <ChevronRight
-                  className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
+                  className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${
                     expanded === i ? "rotate-90" : ""
                   }`}
                 />
@@ -79,6 +82,7 @@ export function LandingUseCases() {
                 <motion.p
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="text-sm text-muted-foreground pb-6 leading-relaxed"
                 >
                   {uc.description}
@@ -86,7 +90,7 @@ export function LandingUseCases() {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
