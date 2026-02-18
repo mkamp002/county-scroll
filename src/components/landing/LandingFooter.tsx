@@ -1,7 +1,7 @@
 export function LandingFooter() {
   return (
     <footer className="py-12 border-t border-border">
-      <div className="container mx-auto px-6">
+      <div className="max-w-[1000px] mx-auto px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <span className="text-sm font-semibold tracking-[0.15em] uppercase">VONKAM</span>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">

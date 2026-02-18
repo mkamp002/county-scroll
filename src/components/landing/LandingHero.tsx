@@ -67,7 +67,7 @@ export function LandingHero() {
     <section className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/4 blur-[150px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 pt-36 pb-24">
+      <div className="max-w-[1000px] mx-auto px-6 pt-36 pb-24">
         <motion.div className="max-w-3xl mx-auto text-center" initial="hidden" animate="visible">
           <motion.h1
             custom={0}
