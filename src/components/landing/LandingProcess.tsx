@@ -41,7 +41,7 @@ export function LandingProcess() {
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-12 text-center"
         >
           {steps.map((step) => (
-            <motion.div key={step.num} variants={child} className="space-y-3">
+            <motion.div key={step.num} variants={child} className="system-card text-center space-y-3">
               <span className="text-2xl font-bold text-primary/25 block">{step.num}</span>
               <span className="text-base font-semibold tracking-tight block">{step.label}</span>
               <span className="text-xs text-muted-foreground leading-relaxed block max-w-[140px] mx-auto">{step.desc}</span>

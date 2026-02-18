@@ -55,7 +55,7 @@ export function LandingSystems() {
             <motion.div
               key={item.title}
               variants={child}
-              className="group p-10 rounded-lg border border-border bg-card glow-card cursor-default text-center"
+              className="group system-card cursor-default text-center"
             >
               <item.icon className="h-5 w-5 text-primary mb-8 mx-auto" strokeWidth={1.5} />
               <h3 className="text-lg font-semibold mb-4 tracking-tight">{item.title}</h3>
