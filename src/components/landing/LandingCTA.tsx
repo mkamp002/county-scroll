@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Particles } from "./Particles";
 
 const stagger = {
   hidden: {},
@@ -14,8 +15,11 @@ const child = {
 
 export function LandingCTA() {
   return (
-    <section className="py-44">
-      <div className="max-w-[1000px] mx-auto px-6 text-center">
+    <section className="py-48 relative overflow-hidden">
+      <div className="absolute inset-0 radial-glow pointer-events-none" />
+      <Particles count={12} />
+
+      <div className="max-w-[1000px] mx-auto px-6 text-center relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -24,19 +28,19 @@ export function LandingCTA() {
         >
           <motion.h2
             variants={child}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-10 max-w-2xl mx-auto leading-[1.08]"
+            className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight mb-10 max-w-2xl mx-auto leading-[1.08]"
           >
             If your business depends on manual work,
             <br />
             <span className="text-muted-foreground">it's fragile.</span>
           </motion.h2>
           <motion.div variants={child}>
-            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button mb-4">
+            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button mb-5">
               Schedule Consultation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
-          <motion.p variants={child} className="text-xs text-muted-foreground/60 tracking-wide">Private engagements only.</motion.p>
+          <motion.p variants={child} className="text-xs text-muted-foreground/50 tracking-wide">Private engagements only.</motion.p>
         </motion.div>
       </div>
     </section>

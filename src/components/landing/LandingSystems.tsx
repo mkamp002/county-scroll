@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.14 } },
 };
 
 const child = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
 
@@ -31,7 +31,7 @@ const systems = [
 
 export function LandingSystems() {
   return (
-    <section id="systems" className="py-44 bg-section relative">
+    <section id="systems" className="py-48 bg-section relative">
       <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -40,7 +40,7 @@ export function LandingSystems() {
           variants={stagger}
           className="text-center mb-24"
         >
-          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-5">Architecture</motion.p>
+          <motion.p variants={child} className="text-[11px] font-medium text-primary/70 tracking-[0.25em] uppercase mb-5">Systems</motion.p>
           <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">System Blocks</motion.h2>
         </motion.div>
 
@@ -55,17 +55,17 @@ export function LandingSystems() {
             <motion.div
               key={item.title}
               variants={child}
-              className="group p-8 rounded-lg border border-border bg-card glow-card cursor-default text-center"
+              className="group p-10 rounded-lg border border-border bg-card glow-card cursor-default text-center"
             >
               <item.icon className="h-5 w-5 text-primary mb-8 mx-auto" strokeWidth={1.5} />
-              <h3 className="text-lg font-semibold mb-3 tracking-tight">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              <h3 className="text-lg font-semibold mb-4 tracking-tight">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-[240px] mx-auto">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px glow-line" />
+      <div className="absolute bottom-0 left-0 right-0 gradient-separator" />
     </section>
   );
 }

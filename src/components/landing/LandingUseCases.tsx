@@ -13,33 +13,18 @@ const child = {
 };
 
 const cases = [
-  {
-    title: "Real Estate Intelligence Systems",
-    description: "Automated lead scoring, docket monitoring, and property data enrichment pipelines for real estate operators.",
-  },
-  {
-    title: "Automated Lead Acquisition Engines",
-    description: "Multi-channel outbound systems that qualify, route, and nurture leads without manual intervention.",
-  },
-  {
-    title: "Operations Command Dashboards",
-    description: "Centralized real-time dashboards connecting all operational data into a single command layer.",
-  },
-  {
-    title: "Docket & Data Monitoring Systems",
-    description: "Event-driven alerts, structured scraping, and automated monitoring for competitive and legal intelligence.",
-  },
-  {
-    title: "AI Internal Assistants",
-    description: "Purpose-built AI tools trained on your data, integrated into your existing workflows and decision processes.",
-  },
+  { title: "Real Estate Intelligence Systems", description: "Automated lead scoring, docket monitoring, and property data enrichment pipelines for real estate operators." },
+  { title: "Automated Lead Acquisition Engines", description: "Multi-channel outbound systems that qualify, route, and nurture leads without manual intervention." },
+  { title: "Operations Command Dashboards", description: "Centralized real-time dashboards connecting all operational data into a single command layer." },
+  { title: "Docket & Data Monitoring Systems", description: "Event-driven alerts, structured scraping, and automated monitoring for competitive and legal intelligence." },
+  { title: "AI Internal Assistants", description: "Purpose-built AI tools trained on your data, integrated into your existing workflows and decision processes." },
 ];
 
 export function LandingUseCases() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <section id="cases" className="py-44 relative">
+    <section id="cases" className="py-48 relative grid-bg-subtle">
       <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -48,8 +33,8 @@ export function LandingUseCases() {
           variants={stagger}
           className="text-center mb-24"
         >
-          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-5">Applications</motion.p>
-          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">Use Cases</motion.h2>
+          <motion.p variants={child} className="text-[11px] font-medium text-primary/70 tracking-[0.25em] uppercase mb-5">Use Cases</motion.p>
+          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">Applications</motion.h2>
         </motion.div>
 
         <motion.div
@@ -60,30 +45,22 @@ export function LandingUseCases() {
           className="max-w-2xl mx-auto space-y-0"
         >
           {cases.map((uc, i) => (
-            <motion.div
-              key={i}
-              variants={child}
-              className="border-b border-border"
-            >
+            <motion.div key={i} variants={child} className="border-b border-border">
               <button
                 onClick={() => setExpanded(expanded === i ? null : i)}
-                className="w-full flex items-center justify-between py-6 text-left group"
+                className="w-full flex items-center justify-between py-7 text-left group"
               >
                 <span className="text-base font-medium tracking-tight group-hover:text-primary transition-colors duration-300">
                   {uc.title}
                 </span>
-                <ChevronRight
-                  className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${
-                    expanded === i ? "rotate-90" : ""
-                  }`}
-                />
+                <ChevronRight className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${expanded === i ? "rotate-90" : ""}`} />
               </button>
               {expanded === i && (
                 <motion.p
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="text-sm text-muted-foreground pb-6 leading-relaxed"
+                  className="text-sm text-muted-foreground pb-7 leading-relaxed max-w-lg"
                 >
                   {uc.description}
                 </motion.p>
@@ -93,7 +70,7 @@ export function LandingUseCases() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px glow-line" />
+      <div className="absolute bottom-0 left-0 right-0 gradient-separator" />
     </section>
   );
 }

@@ -58,17 +58,38 @@
 @layer components {
   .grid-bg {
     background-image: 
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .grid-bg-subtle {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
   .glow-line {
-    background: linear-gradient(90deg, transparent, hsl(200, 100%, 55%, 0.12), transparent);
+    background: linear-gradient(90deg, transparent, hsl(200, 100%, 55%, 0.15), transparent);
+    height: 1px;
   }
 
   .glow-line-v {
     background: linear-gradient(180deg, transparent, hsl(200, 100%, 55%, 0.08), transparent);
+  }
+
+  .gradient-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 5%, hsl(0, 0%, 15%) 30%, hsl(200, 100%, 55%, 0.12) 50%, hsl(0, 0%, 15%) 70%, transparent 95%);
+  }
+
+  .radial-glow {
+    background: radial-gradient(ellipse 600px 500px at center, hsl(200, 100%, 55%, 0.04), transparent);
+  }
+
+  .radial-glow-top {
+    background: radial-gradient(ellipse 800px 400px at center top, hsl(200, 100%, 55%, 0.03), transparent);
   }
 
   .glow-button {
@@ -87,7 +108,7 @@
   .glow-card:hover {
     border-color: hsl(200, 100%, 55%, 0.2);
     box-shadow: 0 0 40px hsl(200, 100%, 55%, 0.05), inset 0 1px 0 hsl(200, 100%, 55%, 0.05);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   .lift-hover {
@@ -112,5 +133,30 @@
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+  }
+
+  /* Floating particles */
+  .particles-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: hsl(200, 100%, 55%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-particle linear infinite;
+  }
+
+  @keyframes float-particle {
+    0% { opacity: 0; transform: translateY(0) translateX(0); }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.1; }
+    100% { opacity: 0; transform: translateY(-200px) translateX(40px); }
   }
 }

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Particles } from "./Particles";
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
@@ -12,7 +13,7 @@ const fade = {
   }),
 };
 
-const credibility = ["AI Agents", "Data Pipelines", "Workflow Engines", "Internal Ops Automation"];
+const credibility = ["AI Agents", "Data Infrastructure", "Workflow Automation", "System Architecture"];
 
 const terminalLines = [
   "$ vonkam init --system automation",
@@ -28,19 +29,13 @@ function TerminalTyping() {
 
   useEffect(() => {
     if (done) return;
-    if (lineIndex >= terminalLines.length) {
-      setDone(true);
-      return;
-    }
+    if (lineIndex >= terminalLines.length) { setDone(true); return; }
     const line = terminalLines[lineIndex];
     if (charIndex < line.length) {
       const t = setTimeout(() => setCharIndex((c) => c + 1), 28);
       return () => clearTimeout(t);
     } else {
-      const t = setTimeout(() => {
-        setLineIndex((l) => l + 1);
-        setCharIndex(0);
-      }, 400);
+      const t = setTimeout(() => { setLineIndex((l) => l + 1); setCharIndex(0); }, 400);
       return () => clearTimeout(t);
     }
   }, [lineIndex, charIndex, done]);
@@ -65,14 +60,27 @@ function TerminalTyping() {
 export function LandingHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/4 blur-[150px] pointer-events-none" />
+      {/* Radial glow */}
+      <div className="absolute inset-0 radial-glow pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[180px] pointer-events-none" />
 
-      <div className="max-w-[1000px] mx-auto px-6 pt-36 pb-24">
+      {/* Particles */}
+      <Particles count={24} />
+
+      <div className="max-w-[1000px] mx-auto px-6 pt-36 pb-28 relative z-10">
         <motion.div className="max-w-3xl mx-auto text-center" initial="hidden" animate="visible">
-          <motion.h1
+          <motion.p
             custom={0}
             variants={fade}
-            className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight mb-7"
+            className="text-[11px] font-medium text-primary/70 tracking-[0.25em] uppercase mb-8"
+          >
+            Automation Infrastructure Lab
+          </motion.p>
+
+          <motion.h1
+            custom={1}
+            variants={fade}
+            className="text-5xl sm:text-6xl lg:text-[80px] font-bold leading-[1.0] tracking-tight mb-8"
           >
             Built Systems
             <br />
@@ -80,18 +88,18 @@ export function LandingHero() {
           </motion.h1>
 
           <motion.p
-            custom={1}
+            custom={2}
             variants={fade}
-            className="text-[17px] text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-lg text-muted-foreground max-w-lg mx-auto mb-12 leading-relaxed"
           >
             VONKAM designs AI agents, automation engines, and data infrastructure that remove manual friction and unlock scalable operations.
           </motion.p>
 
-          <motion.div custom={2} variants={fade} className="mb-12">
+          <motion.div custom={3} variants={fade} className="mb-14">
             <TerminalTyping />
           </motion.div>
 
-          <motion.div custom={3} variants={fade} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <motion.div custom={4} variants={fade} className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button">
               Book Strategy Call
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -106,17 +114,19 @@ export function LandingHero() {
             </Button>
           </motion.div>
 
-          <motion.div custom={4} variants={fade} className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {credibility.map((item) => (
-              <span key={item} className="text-xs text-muted-foreground/70 tracking-wide uppercase">
-                {item}
+          {/* Credibility strip */}
+          <motion.div custom={5} variants={fade} className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+            {credibility.map((item, i) => (
+              <span key={item} className="flex items-center gap-3">
+                <span className="text-[11px] text-muted-foreground/50 tracking-[0.15em] uppercase">{item}</span>
+                {i < credibility.length - 1 && <span className="w-px h-3 bg-border" />}
               </span>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px glow-line" />
+      <div className="absolute bottom-0 left-0 right-0 glow-line" />
     </section>
   );
 }
