@@ -1,4 +1,5 @@
 import { LandingHero } from "@/components/landing/LandingHero";
+import { LandingStats } from "@/components/landing/LandingStats";
 import { LandingStatement } from "@/components/landing/LandingStatement";
 import { LandingSystems } from "@/components/landing/LandingSystems";
 import { LandingUseCases } from "@/components/landing/LandingUseCases";
@@ -14,6 +15,7 @@ export default function Landing() {
     <div className="min-h-screen bg-background text-foreground">
       <LandingNav />
       <LandingHero />
+      <LandingStats />
       <LandingStatement />
       <LandingSystems />
       <LandingUseCases />

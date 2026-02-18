@@ -20,7 +20,7 @@ const steps = [
 
 export function LandingProcess() {
   return (
-    <section id="process" className="py-44 bg-section relative">
+    <section id="process" className="py-48 bg-section relative">
       <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -29,8 +29,8 @@ export function LandingProcess() {
           variants={stagger}
           className="text-center mb-24"
         >
-          <motion.p variants={child} className="text-xs font-medium text-primary tracking-[0.2em] uppercase mb-5">Methodology</motion.p>
-          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">Process</motion.h2>
+          <motion.p variants={child} className="text-[11px] font-medium text-primary/70 tracking-[0.25em] uppercase mb-5">Process</motion.p>
+          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight">Methodology</motion.h2>
         </motion.div>
 
         <motion.div
@@ -38,19 +38,19 @@ export function LandingProcess() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           variants={stagger}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 text-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-12 text-center"
         >
           {steps.map((step) => (
-            <motion.div key={step.num} variants={child}>
-              <span className="text-2xl font-semibold text-primary/30 block mb-3">{step.num}</span>
-              <span className="text-base font-medium tracking-tight block mb-2">{step.label}</span>
-              <span className="text-xs text-muted-foreground leading-relaxed">{step.desc}</span>
+            <motion.div key={step.num} variants={child} className="space-y-3">
+              <span className="text-2xl font-bold text-primary/25 block">{step.num}</span>
+              <span className="text-base font-semibold tracking-tight block">{step.label}</span>
+              <span className="text-xs text-muted-foreground leading-relaxed block max-w-[140px] mx-auto">{step.desc}</span>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px glow-line" />
+      <div className="absolute bottom-0 left-0 right-0 gradient-separator" />
     </section>
   );
 }
