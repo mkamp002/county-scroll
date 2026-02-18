@@ -101,6 +101,20 @@
     box-shadow: 0 0 30px hsl(200, 100%, 55%, 0.25), 0 0 80px hsl(200, 100%, 55%, 0.1);
   }
 
+  .system-card {
+    background: hsl(0, 0%, 7%);
+    border: 1px solid hsl(0, 0%, 100%, 0.06);
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .system-card:hover {
+    border-color: hsl(200, 100%, 55%, 0.2);
+    box-shadow: 0 0 30px hsl(200, 100%, 55%, 0.06), inset 0 1px 0 hsl(200, 100%, 55%, 0.04);
+    transform: translateY(-5px);
+  }
+
   .glow-card {
     transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
