@@ -12,7 +12,7 @@ const child = {
 
 export function LandingStatement() {
   return (
-    <section className="py-36 sm:py-44 relative">
+    <section className="py-44 sm:py-52 relative">
       <div className="max-w-[1000px] mx-auto px-6 text-center">
         <motion.div
           initial="hidden"
@@ -22,13 +22,13 @@ export function LandingStatement() {
         >
           <motion.h2
             variants={child}
-            className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight mb-8"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-10"
           >
             Most businesses operate manually.
             <br />
             <span className="text-primary">We engineer leverage.</span>
           </motion.h2>
-          <motion.p variants={child} className="text-[17px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={child} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We build backend systems that eliminate repetitive work, centralize intelligence, and give operators full control over their workflows.
           </motion.p>
         </motion.div>
