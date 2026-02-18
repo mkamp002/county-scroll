@@ -55,7 +55,7 @@ export function LandingSystems() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fade}
-              className="group p-8 rounded-lg border border-border bg-card glow-card"
+              className="group p-8 rounded-lg border border-border bg-card glow-card cursor-default"
             >
               <item.icon className="h-5 w-5 text-primary mb-8" strokeWidth={1.5} />
               <h3 className="text-lg font-semibold mb-3 tracking-tight">{item.title}</h3>
