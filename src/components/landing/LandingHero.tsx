@@ -100,9 +100,11 @@ export function LandingHero() {
           </motion.div>
 
           <motion.div custom={4} variants={fade} className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
-            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button">
-              Book Strategy Call
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button size="lg" className="text-sm font-medium px-8 h-12 glow-button" asChild>
+              <a href="https://calendly.com/michelkampreisser1/30min" target="_blank" rel="noopener noreferrer">
+                Book Strategy Call
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
             <Button
               variant="outline"
