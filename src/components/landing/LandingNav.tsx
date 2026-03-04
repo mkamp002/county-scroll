@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 export function LandingNav() {
   return (
@@ -22,8 +22,11 @@ export function LandingNav() {
             About
           </a>
         </div>
-        <Button asChild size="sm" variant="outline" className="border-border/60 text-foreground hover:bg-secondary text-[13px]">
-          <Link to="/app">Login</Link>
+        <Button asChild size="sm" className="text-[13px] glow-button">
+          <a href="https://calendly.com/michelkampreisser1/30min" target="_blank" rel="noopener noreferrer">
+            Book a Call
+            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+          </a>
         </Button>
       </div>
     </nav>
