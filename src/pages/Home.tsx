@@ -571,7 +571,7 @@ export default function Home() {
             </p>
             <div>
               <p className="text-xs font-bold text-white">— Real Estate Operator</p>
-              <p className="text-[10px] text-[#666] font-mono mt-0.5">Miami, FL</p>
+              <p className="text-[10px] text-[#666] font-mono mt-0.5">United States</p>
             </div>
           </div>
         </div>
