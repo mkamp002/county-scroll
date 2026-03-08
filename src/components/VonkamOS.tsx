@@ -235,8 +235,9 @@ export default function VonkamOS() {
   return (
     <>
       <style>{`
-        .vai-trigger{position:fixed;bottom:28px;right:28px;z-index:1000}
+        .vai-trigger{position:fixed;bottom:28px;right:28px;z-index:50}
         .vai-btn{position:relative;background:#E8570A;border:none;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:2px;padding:14px 20px;cursor:pointer;display:flex;align-items:center;gap:10px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s ease}
+        @media(max-width:480px){.vai-trigger{bottom:16px;right:16px}.vai-btn{padding:10px 14px;font-size:10px;letter-spacing:1.5px}}
         .vai-btn:hover{background:#ff6b1a;transform:translateY(-2px)}
         .vai-btn-dot{width:8px;height:8px;background:#fff;border-radius:50%;animation:vaiBlink 1.5s infinite}
         .vai-pulse-ring{position:absolute;inset:-8px;border:2px solid #E8570A;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);animation:vaiPulse 2s infinite;opacity:0}

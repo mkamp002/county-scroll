@@ -162,7 +162,7 @@ const industryTags = ["REAL ESTATE", "AGENCIES", "E-COMMERCE", "SAAS", "PROFESSI
 function IndustryTicker() {
   const doubled = [...industryTags, ...industryTags, ...industryTags];
   return (
-    <div className="w-full overflow-hidden py-3 mb-8">
+    <div className="w-full overflow-hidden py-3 mb-8 max-w-full">
       <motion.div
         className="flex gap-6 whitespace-nowrap"
         animate={{ x: ["0%", "-33.33%"] }}
