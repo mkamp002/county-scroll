@@ -21,9 +21,12 @@ export function LandingAbout() {
           variants={stagger}
         >
           <motion.p variants={child} className="text-[11px] font-medium text-primary/70 tracking-[0.25em] uppercase mb-5">About</motion.p>
-          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-bold tracking-tight mb-10">VONKAM</motion.h2>
-          <motion.p variants={child} className="text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
+          <motion.h2 variants={child} className="text-5xl sm:text-6xl font-display font-bold tracking-tight mb-10">VONKAM</motion.h2>
+          <motion.p variants={child} className="text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed mb-6">
             VONKAM is a systems lab focused on automation infrastructure for high-leverage businesses. We combine AI, workflow engineering, and data architecture to eliminate inefficiencies and create scalable foundations.
+          </motion.p>
+          <motion.p variants={child} className="text-sm text-muted-foreground/60 tracking-wide">
+            Miami-based · Globally deployed
           </motion.p>
         </motion.div>
       </div>
