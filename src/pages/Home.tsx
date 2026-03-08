@@ -665,7 +665,7 @@ export default function Home() {
               <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#E8570A]/20" />
               {steps.map((s, i) => (
                 <div key={i} className="relative mb-10 last:mb-0">
-                  <div className="absolute -left-6 top-0 w-9 h-9 rounded-full border border-[#E8570A]/40 bg-[#0A0A0A] flex items-center justify-center">
+                  <div className="absolute left-[-22px] top-0 w-9 h-9 rounded-full border border-[#E8570A]/40 bg-[#0A0A0A] flex items-center justify-center">
                     <span className="text-[10px] font-mono text-[#E8570A] font-bold">{s.n}</span>
                   </div>
                   <h3 className="text-base font-bold mb-1" style={{ fontFamily: syne }}>{s.title}</h3>
