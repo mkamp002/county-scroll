@@ -418,6 +418,17 @@ export default function VonkamLanding() {
         </div>
       </Section>
 
+      {/* ─── ROI CALCULATOR ─── */}
+      <Section className="py-32" style={{ background: "#0D0D0D" }}>
+        <div className="max-w-[1100px] mx-auto px-6">
+          <p className="text-[11px] font-mono text-[#E8570A] tracking-[0.2em] uppercase mb-4">ROI CALCULATOR</p>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-14 leading-[1.15]" style={{ fontFamily: "'Syne', sans-serif" }}>
+            What Manual Operations Are Costing You
+          </h2>
+          <ROICalculator />
+        </div>
+      </Section>
+
       {/* ─── LEAD MAGNET ─── */}
       <Section className="py-32">
         <div className="max-w-[480px] mx-auto px-6">
