@@ -802,7 +802,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
             <div>
               <span className="text-base font-bold tracking-[0.15em] uppercase" style={{ fontFamily: syne }}>VONKAM</span>
-              <p className="text-xs text-[#888] mt-1">© 2025 VONKAM Technologies. Miami, FL.</p>
+              <p className="text-xs text-[#888] mt-1">© 2025 VONKAM Technologies.</p>
             </div>
             <div className="flex items-center gap-8">
               {["systems", "cases", "process", "about"].map((s) => (
