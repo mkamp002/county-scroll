@@ -620,7 +620,7 @@ export default function Home() {
       </Section>
 
       {/* ═══ TECH STACK ═══ */}
-      <Section id="techstack" className="py-32 bg-[#080808]">
+      <Section id="techstack" className="py-16 sm:py-32 bg-[#080808]">
         <div className="max-w-[1100px] mx-auto px-6">
           <p className="text-[11px] font-mono text-[#E8570A] tracking-[0.2em] uppercase mb-4">INFRASTRUCTURE</p>
           <h2 className="text-3xl sm:text-4xl font-bold mb-14 leading-[1.15]" style={{ fontFamily: syne }}>Our Stack</h2>
