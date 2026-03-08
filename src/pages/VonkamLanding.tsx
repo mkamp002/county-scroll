@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Zap, BarChart3, Database, ChevronDown } from "lucide-react";
+import { ArrowRight, Bot, Zap, BarChart3, Database, ChevronDown, Plus, Minus } from "lucide-react";
 import VonkamOS from "@/components/VonkamOS";
 
 /* ─── Intersection Observer hook ─── */
