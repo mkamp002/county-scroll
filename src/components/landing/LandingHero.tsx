@@ -106,7 +106,7 @@ export function LandingHero() {
           <motion.h1
             custom={1}
             variants={fade}
-            className="text-5xl sm:text-6xl lg:text-[80px] font-display font-bold leading-[1.0] tracking-tight mb-8"
+            className="text-5xl sm:text-6xl lg:text-[80px] font-display font-bold leading-[1.1] tracking-tight mb-8"
           >
             Built Systems
             <br />

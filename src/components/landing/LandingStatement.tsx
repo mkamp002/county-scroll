@@ -26,7 +26,7 @@ export function LandingStatement() {
           </motion.p>
           <motion.h2
             variants={child}
-            className="text-5xl sm:text-6xl lg:text-[72px] font-bold leading-[1.05] tracking-tight mb-10"
+            className="text-5xl sm:text-6xl lg:text-[72px] font-bold leading-[1.15] tracking-tight mb-10"
           >
             Most businesses operate manually.
             <br />

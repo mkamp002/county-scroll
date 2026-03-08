@@ -28,7 +28,7 @@ export function LandingCTA() {
         >
           <motion.h2
             variants={child}
-            className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight mb-10 max-w-2xl mx-auto leading-[1.08]"
+            className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight mb-10 max-w-2xl mx-auto leading-[1.15]"
           >
             If your business depends on manual work,
             <br />
