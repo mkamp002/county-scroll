@@ -659,20 +659,19 @@ export default function Home() {
           </div>
 
           {/* Mobile: vertical timeline */}
-          <div className="sm:hidden mb-16">
-            <div className="relative pl-12">
-              <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#E8570A]/20" />
-              {steps.map((s, i) => (
-                <div key={i} className="relative mb-10 last:mb-0">
-                  <div className="absolute left-[-22px] top-0 w-9 h-9 rounded-full border border-[#E8570A]/40 bg-[#0A0A0A] flex items-center justify-center">
-                    <span className="text-[10px] font-mono text-[#E8570A] font-bold">{s.n}</span>
-                  </div>
+          <div className="sm:hidden mb-16 overflow-visible" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
+            {steps.map((s, i) => (
+              <div key={i} className="flex items-start gap-4 w-full mb-10 last:mb-0">
+                <div className="w-11 h-11 min-w-[44px] flex-shrink-0 rounded-full border border-[#E8570A]/40 bg-[#0A0A0A] flex items-center justify-center">
+                  <span className="text-[10px] font-mono text-[#E8570A] font-bold">{s.n}</span>
+                </div>
+                <div>
                   <h3 className="text-base font-bold mb-1" style={{ fontFamily: syne }}>{s.title}</h3>
                   <p className="text-sm text-[#888] leading-relaxed">{s.desc}</p>
                   <p className="text-[10px] font-mono text-[#E8570A]/60 mt-1">{s.time}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           <div className="text-center">
