@@ -742,7 +742,7 @@ export default function Home() {
             <div className="space-y-3 mb-8">
               {[
                 "Production-grade systems, not templates",
-                "Miami-based team, globally deployed",
+                "Global team, always-on infrastructure",
                 "Every system monitored and optimized post-deployment",
               ].map((line, i) => (
                 <div key={i} className="flex items-start gap-3">
