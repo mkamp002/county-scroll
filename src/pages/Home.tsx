@@ -508,7 +508,7 @@ export default function Home() {
 
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24, duration: 0.6 }}
               className="text-sm sm:text-base text-[#888] tracking-wide mb-10 font-mono">
-              Miami-based. Globally deployed. Zero manual operations.
+              Engineered for scale. Deployed globally. Zero manual operations.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.36, duration: 0.6 }} className="mb-12">
