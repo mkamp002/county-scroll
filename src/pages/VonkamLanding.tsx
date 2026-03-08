@@ -39,7 +39,7 @@ function Counter({ end, suffix = "", prefix = "", duration = 2000 }: { end: numb
 }
 
 /* ─── Section wrapper with fade-in ─── */
-function Section({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) {
+function Section({ children, id, className = "", style }: { children: React.ReactNode; id?: string; className?: string; style?: React.CSSProperties }) {
   const { ref, visible } = useInView(0.08);
   return (
     <div
