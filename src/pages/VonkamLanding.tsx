@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Zap, BarChart3, Database, ChevronDown } from "lucide-react";
+import { ArrowRight, Bot, Zap, BarChart3, Database, ChevronDown, Plus, Minus } from "lucide-react";
 import VonkamOS from "@/components/VonkamOS";
 
 /* ─── Intersection Observer hook ─── */
@@ -38,14 +38,230 @@ function Counter({ end, suffix = "", prefix = "", duration = 2000 }: { end: numb
   return <span ref={ref}>{prefix}{val}{suffix}</span>;
 }
 
-/* ─── Section wrapper with fade-in ─── */
-function Section({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) {
+/* ─── Animated value counter (for ROI) ─── */
+function AnimVal({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
+  const [display, setDisplay] = useState(value);
+  const prev = useRef(value);
+  useEffect(() => {
+    const from = prev.current;
+    const to = value;
+    prev.current = to;
+    if (from === to) return;
+    const dur = 300;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / dur, 1);
+      setDisplay(Math.round(from + (to - from) * t));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [value]);
+  return <span>{prefix}{display.toLocaleString()}{suffix}</span>;
+}
+
+/* ─── Industry insights map ─── */
+const INDUSTRY_INSIGHTS: Record<string, string> = {
+  "Real Estate": "Real estate operators using our lead intelligence systems recover 94% of manual prospecting time.",
+  "Marketing Agency": "Agencies on our outbound engine average 400+ monthly touchpoints with zero added headcount.",
+  "E-commerce": "E-commerce brands using our content pipelines post 2x daily across platforms with no manual effort.",
+  "SaaS / Tech": "SaaS teams using our ops dashboards cut reporting time by 60% and eliminate weekly manual data pulls.",
+  "Professional Services": "Service businesses automate 80% of their follow-up and lead qualification within 14 days of deployment.",
+  "Other": "Most operations automate 70-80% of manual tasks within the first 30 days of deployment.",
+};
+
+const INDUSTRIES = ["Real Estate", "Marketing Agency", "E-commerce", "SaaS / Tech", "Professional Services", "Other"];
+
+/* ─── ROI Calculator ─── */
+function ROICalculator() {
+  const [teamSize, setTeamSize] = useState(2);
+  const [hourlyRate, setHourlyRate] = useState(35);
+  const [hoursPerWeek, setHoursPerWeek] = useState(20);
+  const [industry, setIndustry] = useState("Real Estate");
+
+  const monthlyCost = teamSize * hourlyRate * hoursPerWeek * 4.33;
+  const annualCost = monthlyCost * 12;
+  const hoursRecovered = Math.round(hoursPerWeek * teamSize * 0.8);
+  const monthlySavings = monthlyCost * 0.8;
+  const roi = Math.round(((monthlySavings * 12 - 5000) / 5000) * 100);
+
+  const mono = "'JetBrains Mono', monospace";
+  const syne = "'Syne', sans-serif";
+
+  return (
+    <div className="grid md:grid-cols-2 gap-10">
+      {/* LEFT — INPUTS */}
+      <div className="space-y-8">
+        {/* Team Size */}
+        <div>
+          <label className="block text-[10px] tracking-[0.2em] uppercase mb-3" style={{ fontFamily: mono, color: "#E8570A" }}>
+            HOW MANY PEOPLE DO THIS MANUALLY
+          </label>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setTeamSize(Math.max(1, teamSize - 1))}
+              className="w-10 h-10 flex items-center justify-center border border-[#2A2A2A] hover:border-[#E8570A] transition-colors"
+              style={{ background: "#111" }}
+            >
+              <Minus className="h-4 w-4 text-[#E8570A]" />
+            </button>
+            <span className="text-2xl font-bold w-12 text-center" style={{ fontFamily: syne }}>{teamSize}</span>
+            <button
+              onClick={() => setTeamSize(Math.min(50, teamSize + 1))}
+              className="w-10 h-10 flex items-center justify-center border border-[#2A2A2A] hover:border-[#E8570A] transition-colors"
+              style={{ background: "#111" }}
+            >
+              <Plus className="h-4 w-4 text-[#E8570A]" />
+            </button>
+          </div>
+        </div>
+
+        {/* Hourly Rate */}
+        <div>
+          <label className="block text-[10px] tracking-[0.2em] uppercase mb-3" style={{ fontFamily: mono, color: "#E8570A" }}>
+            AVERAGE HOURLY RATE PER PERSON (USD)
+          </label>
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#E8570A] text-sm" style={{ fontFamily: mono }}>$</span>
+            <input
+              type="number"
+              min={10}
+              max={500}
+              value={hourlyRate}
+              onChange={(e) => setHourlyRate(Math.max(10, Math.min(500, Number(e.target.value) || 10)))}
+              className="w-full pl-8 pr-4 py-3 text-sm text-white border-b-2 border-[#2A2A2A] focus:border-[#E8570A] outline-none transition-colors"
+              style={{ fontFamily: mono, background: "#111" }}
+            />
+          </div>
+        </div>
+
+        {/* Hours Per Week */}
+        <div>
+          <label className="block text-[10px] tracking-[0.2em] uppercase mb-3" style={{ fontFamily: mono, color: "#E8570A" }}>
+            HOURS SPENT ON MANUAL TASKS PER WEEK{" "}
+            <span className="text-white ml-2">{hoursPerWeek}h</span>
+          </label>
+          <input
+            type="range"
+            min={1}
+            max={80}
+            value={hoursPerWeek}
+            onChange={(e) => setHoursPerWeek(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, #E8570A ${((hoursPerWeek - 1) / 79) * 100}%, #2A2A2A ${((hoursPerWeek - 1) / 79) * 100}%)`,
+            }}
+          />
+          <style>{`
+            input[type="range"]::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              width: 20px; height: 20px; border-radius: 50%;
+              background: #E8570A; cursor: pointer;
+              border: 2px solid #0D0D0D;
+              transition: transform 0.15s;
+            }
+            input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+            input[type="range"]::-moz-range-thumb {
+              width: 20px; height: 20px; border-radius: 50%;
+              background: #E8570A; cursor: pointer;
+              border: 2px solid #0D0D0D;
+            }
+          `}</style>
+        </div>
+
+        {/* Industry */}
+        <div>
+          <label className="block text-[10px] tracking-[0.2em] uppercase mb-3" style={{ fontFamily: mono, color: "#E8570A" }}>
+            YOUR INDUSTRY
+          </label>
+          <select
+            value={industry}
+            onChange={(e) => setIndustry(e.target.value)}
+            className="w-full px-4 py-3 text-sm text-white border-b-2 border-[#2A2A2A] focus:border-[#E8570A] outline-none transition-colors appearance-none cursor-pointer"
+            style={{ fontFamily: mono, background: "#111" }}
+          >
+            {INDUSTRIES.map((ind) => (
+              <option key={ind} value={ind} style={{ background: "#111" }}>{ind}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* RIGHT — RESULTS */}
+      <div className="space-y-4">
+        {/* Current Monthly Cost */}
+        <div className="border border-[#2A2A2A] p-6 rounded-lg" style={{ background: "#1A0A0A" }}>
+          <p className="text-3xl font-bold text-white mb-1" style={{ fontFamily: syne }}>
+            <AnimVal value={Math.round(monthlyCost)} prefix="$" />
+            <span className="text-base font-normal text-[#888]"> / month</span>
+          </p>
+          <p className="text-[10px] tracking-[0.15em] uppercase text-[#888]" style={{ fontFamily: mono }}>CURRENT MONTHLY COST</p>
+        </div>
+
+        {/* Monthly Savings — hero card */}
+        <div className="border border-[#2A2A2A] p-8 rounded-lg relative overflow-hidden" style={{ background: "#111" }}>
+          <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(circle at 50% 50%, #E8570A, transparent 70%)" }} />
+          <div className="relative">
+            <p className="text-5xl font-bold text-[#E8570A] mb-1" style={{ fontFamily: syne }}>
+              <AnimVal value={Math.round(monthlySavings)} prefix="$" />
+              <span className="text-lg font-normal text-[#888]"> / month saved</span>
+            </p>
+            <p className="text-[10px] tracking-[0.15em] uppercase text-[#888]" style={{ fontFamily: mono }}>MONTHLY SAVINGS WITH VONKAM</p>
+          </div>
+        </div>
+
+        {/* Hours Recovered */}
+        <div className="border border-[#2A2A2A] p-6 rounded-lg" style={{ background: "#111" }}>
+          <p className="text-3xl font-bold text-white mb-1" style={{ fontFamily: syne }}>
+            <AnimVal value={hoursRecovered} />
+            <span className="text-base font-normal text-[#888]"> hrs/week recovered</span>
+          </p>
+          <p className="text-[10px] tracking-[0.15em] uppercase text-[#888]" style={{ fontFamily: mono }}>HOURS RECOVERED PER WEEK</p>
+        </div>
+
+        {/* Year One ROI */}
+        <div className="border border-[#2A2A2A] p-6 rounded-lg" style={{ background: "#111" }}>
+          <p className="text-3xl font-bold text-[#E8570A] mb-1" style={{ fontFamily: syne }}>
+            <AnimVal value={roi} suffix="%" />
+          </p>
+          <p className="text-[10px] tracking-[0.15em] uppercase text-[#888]" style={{ fontFamily: mono }}>RETURN ON AUTOMATION INVESTMENT</p>
+        </div>
+
+        {/* CTA */}
+        <div className="border border-[#2A2A2A] p-6 rounded-lg text-center" style={{ background: "#111" }}>
+          <p className="text-sm text-[#888] mb-4" style={{ fontFamily: mono }}>
+            Your operation is leaving{" "}
+            <span className="text-[#E8570A] font-bold">${Math.round(monthlySavings).toLocaleString()}</span>{" "}
+            on the table every month.
+          </p>
+          <a
+            href="https://calendly.com/michelkampreisser1/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center py-4 text-sm font-bold tracking-wider text-white hover:brightness-110 transition-all hover:shadow-[0_0_20px_rgba(232,87,10,0.3)]"
+            style={{ fontFamily: mono, background: "#E8570A" }}
+          >
+            Get Your Free System Audit →
+          </a>
+        </div>
+
+        {/* Industry Insight */}
+        <p className="text-xs text-[#666] leading-relaxed" style={{ fontFamily: mono }}>
+          {INDUSTRY_INSIGHTS[industry]}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+
+function Section({ children, id, className = "", style }: { children: React.ReactNode; id?: string; className?: string; style?: React.CSSProperties }) {
   const { ref, visible } = useInView(0.08);
   return (
     <div
       ref={ref}
       id={id}
       className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      style={style}
     >
       {children}
     </div>
@@ -415,6 +631,17 @@ export default function VonkamLanding() {
               Book a Call <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </div>
+        </div>
+      </Section>
+
+      {/* ─── ROI CALCULATOR ─── */}
+      <Section className="py-32" style={{ background: "#0D0D0D" }}>
+        <div className="max-w-[1100px] mx-auto px-6">
+          <p className="text-[11px] font-mono text-[#E8570A] tracking-[0.2em] uppercase mb-4">ROI CALCULATOR</p>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-14 leading-[1.15]" style={{ fontFamily: "'Syne', sans-serif" }}>
+            What Manual Operations Are Costing You
+          </h2>
+          <ROICalculator />
         </div>
       </Section>
 
