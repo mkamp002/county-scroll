@@ -50,8 +50,16 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Syne', 'Inter', system-ui, -apple-system, sans-serif;
     letter-spacing: -0.03em;
+  }
+
+  .font-display {
+    font-family: 'Syne', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
 }
 
