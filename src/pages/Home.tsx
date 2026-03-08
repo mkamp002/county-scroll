@@ -735,7 +735,7 @@ export default function Home() {
               Engineering-grade automation for serious operators.
             </h2>
             <p className="text-[#888] leading-relaxed mb-8">
-              VONKAM is a Miami-based AI systems studio. We don't sell subscriptions or templates — we architect and deploy custom automation infrastructure that scales with your operation.
+              VONKAM is an AI systems studio. We don't sell subscriptions or templates — we architect and deploy custom automation infrastructure that scales with your operation.
             </p>
 
             {/* Credibility lines */}
