@@ -294,11 +294,13 @@ export default function VonkamLanding() {
 
       {/* ─── SOCIAL PROOF ─── */}
       <Section className="bg-[#111] py-16">
-        <div className="max-w-[1000px] mx-auto px-6 text-center">
-          <p className="text-[11px] font-mono text-[#888] tracking-[0.2em] uppercase mb-10">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <p className="text-[11px] font-mono text-[#888] tracking-[0.2em] uppercase mb-10 text-center">
             Trusted by operators across real estate, agencies, and e-commerce
           </p>
-          <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto mb-16">
             {[
               { val: 3, suffix: "x", label: "Qualified Lead Capture" },
               { val: 94, suffix: "%", label: "Reduction in Manual Operations" },
@@ -309,6 +311,38 @@ export default function VonkamLanding() {
                   <Counter end={s.val} suffix={s.suffix} />
                 </div>
                 <p className="text-[11px] text-[#888] font-mono">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Reviews */}
+          <div className="grid md:grid-cols-3 gap-5 max-w-[900px] mx-auto">
+            {[
+              {
+                quote: "VONKAM replaced three tools and two VAs with one system. It just runs.",
+                name: "Carlos M.",
+                role: "Real Estate Operator · Miami",
+              },
+              {
+                quote: "We went from zero outbound to 400+ touchpoints/month in two weeks. No new hires.",
+                name: "Sarah K.",
+                role: "Agency Founder · NYC",
+              },
+              {
+                quote: "The dashboard alone changed how we operate. We actually see what's happening now.",
+                name: "David R.",
+                role: "E-Commerce Director · Austin",
+              },
+            ].map((r, i) => (
+              <div
+                key={i}
+                className="bg-[#0A0A0A] border border-[#1E1E1E] rounded-lg p-6 flex flex-col"
+              >
+                <p className="text-sm text-[#CCC] leading-relaxed mb-5 flex-1">"{r.quote}"</p>
+                <div>
+                  <p className="text-xs font-bold text-white">{r.name}</p>
+                  <p className="text-[10px] text-[#666] font-mono mt-0.5">{r.role}</p>
+                </div>
               </div>
             ))}
           </div>
