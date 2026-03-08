@@ -253,9 +253,8 @@ function TechMarquee({ items, direction = "left" }: { items: string[]; direction
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       >
         {tripled.map((item, i) => (
-          <div key={i} className="flex items-center gap-3 border border-[#1E1E1E] rounded px-4 py-2.5 bg-[#111] shrink-0">
-            <div className="w-5 h-5 rounded bg-[#1A1A1A] border border-[#2A2A2A]" />
-            <span className="text-[11px] font-mono text-[#888] tracking-wider">{item}</span>
+           <div key={i} className="flex items-center border border-[#1E1E1E] rounded px-4 py-2.5 bg-[#111] shrink-0">
+             <span className="text-[11px] font-mono text-[#888] tracking-wider">{item}</span>
           </div>
         ))}
       </motion.div>
