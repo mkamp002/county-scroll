@@ -46,6 +46,7 @@ function Section({ children, id, className = "", style }: { children: React.Reac
       ref={ref}
       id={id}
       className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      style={style}
     >
       {children}
     </div>
