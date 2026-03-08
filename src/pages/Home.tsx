@@ -508,7 +508,7 @@ export default function Home() {
 
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24, duration: 0.6 }}
               className="text-sm sm:text-base text-[#888] tracking-wide mb-10 font-mono">
-              Miami-based. Globally deployed. Zero manual operations.
+              Engineered for scale. Deployed globally. Zero manual operations.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.36, duration: 0.6 }} className="mb-12">
@@ -571,7 +571,7 @@ export default function Home() {
             </p>
             <div>
               <p className="text-xs font-bold text-white">— Real Estate Operator</p>
-              <p className="text-[10px] text-[#666] font-mono mt-0.5">Miami, FL</p>
+              <p className="text-[10px] text-[#666] font-mono mt-0.5">United States</p>
             </div>
           </div>
         </div>
@@ -735,14 +735,14 @@ export default function Home() {
               Engineering-grade automation for serious operators.
             </h2>
             <p className="text-[#888] leading-relaxed mb-8">
-              VONKAM is a Miami-based AI systems studio. We don't sell subscriptions or templates — we architect and deploy custom automation infrastructure that scales with your operation.
+              VONKAM is an AI systems studio. We don't sell subscriptions or templates — we architect and deploy custom automation infrastructure that scales with your operation.
             </p>
 
             {/* Credibility lines */}
             <div className="space-y-3 mb-8">
               {[
                 "Production-grade systems, not templates",
-                "Miami-based team, globally deployed",
+                "Global team, always-on infrastructure",
                 "Every system monitored and optimized post-deployment",
               ].map((line, i) => (
                 <div key={i} className="flex items-start gap-3">
@@ -802,7 +802,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
             <div>
               <span className="text-base font-bold tracking-[0.15em] uppercase" style={{ fontFamily: syne }}>VONKAM</span>
-              <p className="text-xs text-[#888] mt-1">© 2025 VONKAM Technologies. Miami, FL.</p>
+              <p className="text-xs text-[#888] mt-1">© 2025 VONKAM Technologies.</p>
             </div>
             <div className="flex items-center gap-8">
               {["systems", "cases", "process", "about"].map((s) => (
