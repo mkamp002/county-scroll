@@ -48,27 +48,33 @@ export function LandingLeadMagnet() {
 
     console.log('Submitting email:', emailValue);
 
-    const { error } = await externalSupabase
-      .from('email_leads')
-      .insert({ 
-        email: emailValue, 
-        source: 'vonkam.online' 
-      });
+    try {
+      const { error } = await externalSupabase
+        .from('email_leads')
+        .insert({ 
+          email: emailValue, 
+          source: 'website' 
+        });
 
-    console.log('Supabase error:', error);
+      console.log('Supabase response error:', error);
 
-    setIsSubmitting(false);
+      setIsSubmitting(false);
 
-    if (error) {
+      if (error) {
+        console.error('Supabase insert failed:', error.message, error.details, error.hint);
+        setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
+      } else {
+        setStatusMessage({ text: "› Check your inbox!", isError: false });
+        setEmail("");
+        
+        setTimeout(() => {
+          setStatusMessage(null);
+        }, 5000);
+      }
+    } catch (err) {
+      console.error('Network error:', err);
+      setIsSubmitting(false);
       setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
-    } else {
-      setStatusMessage({ text: "› Email logged. Playbook on its way.", isError: false });
-      setEmail("");
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setStatusMessage(null);
-      }, 5000);
     }
   };
 
