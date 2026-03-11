@@ -3,13 +3,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-// External Supabase client for email leads
-const externalSupabase = createClient(
-  "https://tznxiotpvakpxkuihpwe.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4OTc0MDUsImV4cCI6MjA4NzQ3MzQwNX0.e7ZX-G8zoFzGAbiD2AHp8i_EiYCvUmkON2jLINxxzw0"
-);
+import { supabase } from "@/integrations/supabase/client";
 
 const stagger = {
   hidden: {},
@@ -49,19 +43,16 @@ export function LandingLeadMagnet() {
     console.log('Submitting email:', emailValue);
 
     try {
-      const { error } = await externalSupabase
-        .from('email_leads')
-        .insert({ 
-          email: emailValue, 
-          source: 'website' 
-        });
+      const { data, error: fnError } = await supabase.functions.invoke('submit-email-lead', {
+        body: { email: emailValue, source: 'website' },
+      });
 
-      console.log('Supabase response error:', error);
+      console.log('Edge function response:', data, fnError);
 
       setIsSubmitting(false);
 
-      if (error) {
-        console.error('Supabase insert failed:', error.message, error.details, error.hint);
+      if (fnError || data?.error) {
+        console.error('Insert failed:', fnError?.message || data?.error);
         setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
       } else {
         setStatusMessage({ text: "› Check your inbox!", isError: false });
