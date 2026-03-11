@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 const stagger = {
   hidden: {},
@@ -14,6 +13,9 @@ const child = {
   hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
+
+const EMAIL_LEADS_ENDPOINT = "https://tznxiotpvakpxkuihpwe.supabase.co/rest/v1/email_leads";
+const EMAIL_LEADS_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg";
 
 export function LandingLeadMagnet() {
   const [email, setEmail] = useState("");
@@ -28,10 +30,9 @@ export function LandingLeadMagnet() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const emailValue = email.trim();
-    
+
     if (!emailValue) return;
 
-    // Validate email format
     if (!validateEmail(emailValue)) {
       setStatusMessage({ text: "› Invalid email format.", isError: true });
       return;
@@ -40,32 +41,39 @@ export function LandingLeadMagnet() {
     setIsSubmitting(true);
     setStatusMessage(null);
 
-    console.log('Submitting email:', emailValue);
-
     try {
-      const { data, error: fnError } = await supabase.functions.invoke('submit-email-lead', {
-        body: { email: emailValue, source: 'website' },
+      const response = await fetch(EMAIL_LEADS_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: EMAIL_LEADS_ANON_KEY,
+          Authorization: `Bearer ${EMAIL_LEADS_ANON_KEY}`,
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          email: emailValue,
+          source: "website",
+        }),
       });
 
-      console.log('Edge function response:', data, fnError);
-
-      setIsSubmitting(false);
-
-      if (fnError || data?.error) {
-        console.error('Insert failed:', fnError?.message || data?.error);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Lead submit failed:", response.status, errorText);
         setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
-      } else {
-        setStatusMessage({ text: "› Check your inbox!", isError: false });
-        setEmail("");
-        
-        setTimeout(() => {
-          setStatusMessage(null);
-        }, 5000);
+        return;
       }
+
+      setStatusMessage({ text: "Check your inbox!", isError: false });
+      setEmail("");
+
+      setTimeout(() => {
+        setStatusMessage(null);
+      }, 5000);
     } catch (err) {
-      console.error('Network error:', err);
-      setIsSubmitting(false);
+      console.error("Network error:", err);
       setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
