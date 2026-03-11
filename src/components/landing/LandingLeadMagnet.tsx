@@ -3,13 +3,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-// External Supabase client for email leads
-const externalSupabase = createClient(
-  "https://tznxiotpvakpxkuihpwe.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4OTc0MDUsImV4cCI6MjA4NzQ3MzQwNX0.e7ZX-G8zoFzGAbiD2AHp8i_EiYCvUmkON2jLINxxzw0"
-);
+import { supabase } from "@/integrations/supabase/client";
 
 const stagger = {
   hidden: {},
