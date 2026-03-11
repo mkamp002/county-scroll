@@ -14,68 +14,46 @@ const child = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
 };
 
-const EMAIL_LEADS_ENDPOINT = "https://tznxiotpvakpxkuihpwe.supabase.co/rest/v1/email_leads";
-const EMAIL_LEADS_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg";
-
 export function LandingLeadMagnet() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ text: string; isError: boolean } | null>(null);
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  async function handleClick() {
     const emailValue = email.trim();
-
     if (!emailValue) return;
-
-    if (!validateEmail(emailValue)) {
-      setStatusMessage({ text: "› Invalid email format.", isError: true });
-      return;
-    }
 
     setIsSubmitting(true);
     setStatusMessage(null);
 
     try {
-      const response = await fetch(EMAIL_LEADS_ENDPOINT, {
-        method: "POST",
+      const res = await fetch('https://tznxiotpvakpxkuihpwe.supabase.co/rest/v1/email_leads', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          apikey: EMAIL_LEADS_ANON_KEY,
-          Authorization: `Bearer ${EMAIL_LEADS_ANON_KEY}`,
-          Prefer: "return=minimal",
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1MTY5NzgsImV4cCI6MjA1NjA5Mjk3OH0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1MTY5NzgsImV4cCI6MjA1NjA5Mjk3OH0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg',
         },
-        body: JSON.stringify({
-          email: emailValue,
-          source: "website",
-        }),
+        body: JSON.stringify({ email: emailValue, source: 'website' }),
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Lead submit failed:", response.status, errorText);
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error('Submit failed:', res.status, errText);
         setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
-        return;
+      } else {
+        console.log('Email submitted successfully');
+        setStatusMessage({ text: "Check your inbox!", isError: false });
+        setEmail("");
+        setTimeout(() => setStatusMessage(null), 5000);
       }
-
-      setStatusMessage({ text: "Check your inbox!", isError: false });
-      setEmail("");
-
-      setTimeout(() => {
-        setStatusMessage(null);
-      }, 5000);
     } catch (err) {
-      console.error("Network error:", err);
+      console.error('Network error:', err);
       setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }
 
   return (
     <section className="py-48 relative grid-bg-subtle">
@@ -100,7 +78,7 @@ export function LandingLeadMagnet() {
             <p className="text-sm text-muted-foreground leading-relaxed mb-8 max-w-sm mx-auto">
               The 5 systems every scaling operator should have running — free PDF delivered to your inbox.
             </p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
               <Input
                 type="email"
                 placeholder="you@company.com"
@@ -109,11 +87,11 @@ export function LandingLeadMagnet() {
                 className={`flex-1 bg-background/50 border-border/60 text-sm h-11 ${
                   isSubmitting ? "animate-pulse border-orange-500" : ""
                 }`}
-                required
                 disabled={isSubmitting}
               />
-              <Button 
-                type="submit" 
+              <Button
+                type="button"
+                onClick={handleClick}
                 className="h-11 px-6 text-sm font-medium glow-button shrink-0"
                 disabled={isSubmitting}
               >
@@ -124,9 +102,9 @@ export function LandingLeadMagnet() {
                   </>
                 )}
               </Button>
-            </form>
+            </div>
             {statusMessage && (
-              <p 
+              <p
                 className={`mt-4 text-sm font-mono ${
                   statusMessage.isError ? "text-red-500" : "text-orange-500"
                 }`}
@@ -138,7 +116,6 @@ export function LandingLeadMagnet() {
           </motion.div>
         </motion.div>
       </div>
-
       <div className="absolute bottom-0 left-0 right-0 gradient-separator" />
     </section>
   );
