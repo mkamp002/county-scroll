@@ -51,8 +51,8 @@ export function LandingLeadMagnet() {
 
       setIsSubmitting(false);
 
-      if (error) {
-        console.error('Supabase insert failed:', error.message, error.details, error.hint);
+      if (fnError || data?.error) {
+        console.error('Insert failed:', fnError?.message || data?.error);
         setStatusMessage({ text: "› Connection failed. Try again.", isError: true });
       } else {
         setStatusMessage({ text: "› Check your inbox!", isError: false });
