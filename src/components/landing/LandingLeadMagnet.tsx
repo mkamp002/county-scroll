@@ -43,14 +43,11 @@ export function LandingLeadMagnet() {
     console.log('Submitting email:', emailValue);
 
     try {
-      const { error } = await externalSupabase
-        .from('email_leads')
-        .insert({ 
-          email: emailValue, 
-          source: 'website' 
-        });
+      const { data, error: fnError } = await supabase.functions.invoke('submit-email-lead', {
+        body: { email: emailValue, source: 'website' },
+      });
 
-      console.log('Supabase response error:', error);
+      console.log('Edge function response:', data, fnError);
 
       setIsSubmitting(false);
 
