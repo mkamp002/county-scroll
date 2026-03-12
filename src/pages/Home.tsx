@@ -468,7 +468,43 @@ const steps = [
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [leadStatus, setLeadStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const systemsRef = useRef<HTMLDivElement>(null);
+
+  const handleLeadSubmit = useCallback(async () => {
+    console.log("button clicked");
+    const emailValue = email.trim();
+    if (!emailValue) return;
+
+    setLeadStatus("loading");
+
+    try {
+      const res = await fetch("https://yupktcbwimoxltamtsnj.supabase.co/rest/v1/email_leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({ email: emailValue, source: "website" }),
+      });
+
+      if (res.ok || res.status === 201) {
+        setLeadStatus("success");
+        setEmail("");
+      } else {
+        const err = await res.text();
+        console.error("Error:", res.status, err);
+        setLeadStatus("error");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setLeadStatus("error");
+    }
+  }, [email]);
 
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
