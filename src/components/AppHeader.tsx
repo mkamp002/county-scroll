@@ -1,6 +1,7 @@
 import { Search, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import vonkamLogo from "@/assets/vonkam-logo.png";
 
 interface AppHeaderProps {
   onAiClick: () => void;
@@ -13,6 +14,7 @@ export function AppHeader({ onAiClick, onSearchChange }: AppHeaderProps) {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
+            <img src={vonkamLogo} alt="VONKAM" className="h-6 w-auto" />
             <span className="font-heading text-lg font-bold text-foreground">VONKAM</span>
           </div>
 
