@@ -479,17 +479,17 @@ export default function Home() {
     setLeadStatus("loading");
 
     try {
-      const res = await fetch("https://jcqnhsqcgdbtvqihtigq.supabase.co/rest/v1/email_leads", {
+      const res = await fetch("https://yupktcbwimoxltamtsnj.supabase.co/rest/v1/email_leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcW5oc3FjZ2RidHZxaWh0aWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDc1MTAsImV4cCI6MjA4NzAyMzUxMH0.G94XzK6iFtxHhSLsIvJvTgWlB2JSF0aWiQK1XnLfjFw",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcW5oc3FjZ2RidHZxaWh0aWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDc1MTAsImV4cCI6MjA4NzAyMzUxMH0.G94XzK6iFtxHhSLsIvJvTgWlB2JSF0aWiQK1XnLfjFw",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
           Prefer: "return=minimal",
         },
-        body: JSON.stringify({ email: emailValue, source: "website" }),
+        body: JSON.stringify({ email: emailValue, source: "vonkam.online" }),
       });
 
       if (res.ok || res.status === 201) {
