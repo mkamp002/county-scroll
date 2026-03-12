@@ -479,14 +479,14 @@ export default function Home() {
     setLeadStatus("loading");
 
     try {
-      const res = await fetch("https://yupktcbwimoxltamtsnj.supabase.co/rest/v1/email_leads", {
+      const res = await fetch("https://tznxiotpvakpxkuihpwe.supabase.co/rest/v1/email_leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4OTc0MDUsImV4cCI6MjA4NzQ3MzQwNX0.e7ZX-G8zoFzGAbiD2AHp8i_EiYCvUmkON2jLINxxzw0",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6bnhpb3RwdmFrcHhrdWlocHdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4OTc0MDUsImV4cCI6MjA4NzQ3MzQwNX0.e7ZX-G8zoFzGAbiD2AHp8i_EiYCvUmkON2jLINxxzw0",
           Prefer: "return=minimal",
         },
         body: JSON.stringify({ email: emailValue, source: "vonkam.online" }),
