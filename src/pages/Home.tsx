@@ -733,13 +733,28 @@ export default function Home() {
             style={{ background: "radial-gradient(ellipse at center, rgba(232,87,10,0.06), #0A0A0A 70%)" }}>
             <h2 className="text-2xl font-bold mb-4 leading-[1.15]" style={{ fontFamily: syne }}>Get the Automation Playbook</h2>
             <p className="text-sm text-[#888] mb-8 leading-relaxed">The 5 systems every scaling operator should have running — free PDF delivered to your inbox.</p>
-            <div className="flex gap-2 mb-6">
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com"
-                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50" />
-              <button className="bg-[#E8570A] text-white text-sm font-semibold px-5 py-3 rounded hover:bg-[#ff6b1a] transition-colors whitespace-nowrap active:scale-95">
-                Send It →
+            <div className="flex gap-2 mb-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (leadStatus !== "idle") setLeadStatus("idle");
+                }}
+                placeholder="your@email.com"
+                disabled={leadStatus === "loading"}
+                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50 disabled:opacity-70"
+              />
+              <button
+                onClick={handleLeadSubmit}
+                disabled={leadStatus === "loading"}
+                className="bg-[#E8570A] text-white text-sm font-semibold px-5 py-3 rounded hover:bg-[#ff6b1a] transition-colors whitespace-nowrap active:scale-95 disabled:opacity-70"
+              >
+                {leadStatus === "loading" ? "Sending..." : "Send It →"}
               </button>
             </div>
+            {leadStatus === "success" && <p className="text-[11px] text-[#E8570A] font-mono mb-3">Check your inbox!</p>}
+            {leadStatus === "error" && <p className="text-[11px] text-red-400 font-mono mb-3">Something went wrong. Try again.</p>}
             <p className="text-[10px] text-[#888]/50 font-mono mb-6">No spam. Operator-level content only.</p>
 
             {/* VAI alternative */}
