@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import vonkamLogo from "@/assets/vonkam-logo.png";
 
 export function LandingFooter() {
   return (
     <footer className="py-16 border-t border-border">
       <div className="max-w-[1000px] mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
-          <span className="text-base font-semibold tracking-[0.15em] uppercase">VONKAM</span>
+          <div className="flex items-center gap-2.5">
+            <img src={vonkamLogo} alt="VONKAM" className="h-7 w-auto" />
+            <span className="text-base font-semibold tracking-[0.15em] uppercase">VONKAM</span>
+          </div>
           <div className="flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#systems" className="hover:text-foreground transition-colors duration-300">Systems</a>
             <a href="#cases" className="hover:text-foreground transition-colors duration-300">Use Cases</a>

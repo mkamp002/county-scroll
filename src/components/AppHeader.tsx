@@ -1,6 +1,7 @@
 import { Search, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import vonkamLogo from "@/assets/vonkam-logo.png";
 
 interface AppHeaderProps {
   onAiClick: () => void;
