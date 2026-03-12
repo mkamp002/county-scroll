@@ -468,7 +468,43 @@ const steps = [
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [leadStatus, setLeadStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const systemsRef = useRef<HTMLDivElement>(null);
+
+  const handleLeadSubmit = useCallback(async () => {
+    console.log("button clicked");
+    const emailValue = email.trim();
+    if (!emailValue) return;
+
+    setLeadStatus("loading");
+
+    try {
+      const res = await fetch("https://yupktcbwimoxltamtsnj.supabase.co/rest/v1/email_leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1cGt0Y2J3aW1veGx0YW10c25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNjgwODEsImV4cCI6MjA4Mjk0NDA4MX0.QB8UPL14rxG2LgMdZAdI4iDKcsGGoKZfmjV_jDzHLxg",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({ email: emailValue, source: "website" }),
+      });
+
+      if (res.ok || res.status === 201) {
+        setLeadStatus("success");
+        setEmail("");
+      } else {
+        const err = await res.text();
+        console.error("Error:", res.status, err);
+        setLeadStatus("error");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setLeadStatus("error");
+    }
+  }, [email]);
 
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -697,13 +733,28 @@ export default function Home() {
             style={{ background: "radial-gradient(ellipse at center, rgba(232,87,10,0.06), #0A0A0A 70%)" }}>
             <h2 className="text-2xl font-bold mb-4 leading-[1.15]" style={{ fontFamily: syne }}>Get the Automation Playbook</h2>
             <p className="text-sm text-[#888] mb-8 leading-relaxed">The 5 systems every scaling operator should have running — free PDF delivered to your inbox.</p>
-            <div className="flex gap-2 mb-6">
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com"
-                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50" />
-              <button className="bg-[#E8570A] text-white text-sm font-semibold px-5 py-3 rounded hover:bg-[#ff6b1a] transition-colors whitespace-nowrap active:scale-95">
-                Send It →
+            <div className="flex gap-2 mb-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (leadStatus !== "idle") setLeadStatus("idle");
+                }}
+                placeholder="your@email.com"
+                disabled={leadStatus === "loading"}
+                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50 disabled:opacity-70"
+              />
+              <button
+                onClick={handleLeadSubmit}
+                disabled={leadStatus === "loading"}
+                className="bg-[#E8570A] text-white text-sm font-semibold px-5 py-3 rounded hover:bg-[#ff6b1a] transition-colors whitespace-nowrap active:scale-95 disabled:opacity-70"
+              >
+                {leadStatus === "loading" ? "Sending..." : "Send It →"}
               </button>
             </div>
+            {leadStatus === "success" && <p className="text-[11px] text-[#E8570A] font-mono mb-3">Check your inbox!</p>}
+            {leadStatus === "error" && <p className="text-[11px] text-red-400 font-mono mb-3">Something went wrong. Try again.</p>}
             <p className="text-[10px] text-[#888]/50 font-mono mb-6">No spam. Operator-level content only.</p>
 
             {/* VAI alternative */}
