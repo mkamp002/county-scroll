@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { ArrowRight, Bot, Zap, BarChart3, Database, Layers, ChevronDown, Plus, Minus, Check, Menu, X } from "lucide-react";
 import VonkamOS from "@/components/VonkamOS";
