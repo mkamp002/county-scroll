@@ -7,6 +7,7 @@ export function LandingLeadMagnet() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleClick() {
+    console.log('button clicked');
     const val = email.trim();
     if (!val) return;
     setStatus("loading");
