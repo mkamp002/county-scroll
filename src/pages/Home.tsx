@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { ArrowRight, Bot, Zap, BarChart3, Database, Layers, ChevronDown, Plus, Minus, Check, Menu, X } from "lucide-react";
 import VonkamOS from "@/components/VonkamOS";
@@ -480,15 +479,25 @@ export default function Home() {
     setLeadStatus("loading");
 
     try {
-      const { error } = await supabase
-        .from("email_leads" as any)
-        .insert({ email: emailValue, source: "website" });
+      const res = await fetch("https://jcqnhsqcgdbtvqihtigq.supabase.co/rest/v1/email_leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcW5oc3FjZ2RidHZxaWh0aWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDc1MTAsImV4cCI6MjA4NzAyMzUxMH0.G94XzK6iFtxHhSLsIvJvTgWlB2JSF0aWiQK1XnLfjFw",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcW5oc3FjZ2RidHZxaWh0aWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDc1MTAsImV4cCI6MjA4NzAyMzUxMH0.G94XzK6iFtxHhSLsIvJvTgWlB2JSF0aWiQK1XnLfjFw",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({ email: emailValue, source: "website" }),
+      });
 
-      if (!error) {
+      if (res.ok || res.status === 201) {
         setLeadStatus("success");
         setEmail("");
       } else {
-        console.error("Error:", error);
+        const err = await res.text();
+        console.error("Error:", res.status, err);
         setLeadStatus("error");
       }
     } catch (error) {
