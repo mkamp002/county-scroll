@@ -304,7 +304,7 @@ function ROICalculator() {
           <label className="block text-[10px] tracking-[0.2em] uppercase mb-3" style={{ fontFamily: mono, color: "#E8570A" }}>AVERAGE HOURLY RATE PER PERSON (USD)</label>
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#E8570A] text-sm" style={{ fontFamily: mono }}>$</span>
-            <input type="number" min={10} max={500} value={hourlyRate} onChange={(e) => setHourlyRate(Math.max(10, Math.min(500, Number(e.target.value) || 10)))}
+            <input type="number" min={10} max={500} value={hourlyRate} onChange={(e) => { const v = e.target.value; setHourlyRate(v === '' ? '' as any : Number(v)); }} onBlur={() => { const n = Number(hourlyRate); setHourlyRate(Math.max(10, Math.min(500, isNaN(n) ? 25 : n))); }}
               className="w-full pl-8 pr-4 py-3 text-sm text-white border-b-2 border-[#2A2A2A] focus:border-[#E8570A] outline-none transition-colors bg-[#111]" style={{ fontFamily: mono }} />
           </div>
         </div>
