@@ -45,19 +45,19 @@ export function LandingLeadMagnet() {
         <p className="text-muted-foreground mb-8">
           The 5 systems every scaling operator should have running — free PDF delivered to your inbox.
         </p>
-        <div className="flex gap-3 max-w-sm mx-auto">
+        <div className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
           <input
             type="email"
             placeholder="you@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-2 rounded-lg border bg-background text-sm"
+            className="flex-1 px-4 py-2 rounded-lg border bg-background text-sm w-full"
             disabled={status === "loading"}
           />
           <button
             onClick={handleClick}
             disabled={status === "loading"}
-            className="px-6 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium"
+            className="px-6 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium whitespace-nowrap"
           >
             {status === "loading" ? "Sending..." : "Send It →"}
           </button>
