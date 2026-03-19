@@ -729,11 +729,11 @@ export default function Home() {
       {/* ═══ LEAD MAGNET ═══ */}
       <Section className="py-32">
         <div className="max-w-[480px] mx-auto px-6">
-          <div className="border border-[#2A2A2A] rounded-xl p-12 text-center relative overflow-hidden"
+          <div className="border border-[#2A2A2A] rounded-xl p-6 sm:p-12 text-center relative overflow-hidden"
             style={{ background: "radial-gradient(ellipse at center, rgba(232,87,10,0.06), #0A0A0A 70%)" }}>
             <h2 className="text-2xl font-bold mb-4 leading-[1.15]" style={{ fontFamily: syne }}>Get the Automation Playbook</h2>
             <p className="text-sm text-[#888] mb-8 leading-relaxed">The 5 systems every scaling operator should have running — free PDF delivered to your inbox.</p>
-            <div className="flex gap-2 mb-3">
+            <div className="flex flex-col sm:flex-row gap-2 mb-3">
               <input
                 type="email"
                 value={email}
@@ -743,7 +743,7 @@ export default function Home() {
                 }}
                 placeholder="your@email.com"
                 disabled={leadStatus === "loading"}
-                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50 disabled:opacity-70"
+                className="flex-1 bg-[#111] border border-[#2A2A2A] rounded px-4 py-3 text-sm text-white placeholder:text-[#333] focus:outline-none focus:border-[#E8570A]/50 disabled:opacity-70 w-full"
               />
               <button
                 onClick={handleLeadSubmit}
